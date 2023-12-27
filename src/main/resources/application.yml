@@ -1,0 +1,21 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  cloud:
+    function:
+      definition: publishData;ConsumeData;
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          auto-create-topics: true
+      bindings:
+        ConsumeData-in-0:
+          destination:  streaming.new.event
+        mySupplier-out-0:
+          destination: streaming.new.event
+          content-type: application/json
+
+
+server:
+  port: 8888
